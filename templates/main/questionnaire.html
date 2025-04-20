@@ -8,6 +8,8 @@
                 <form method="POST">
                     {% csrf_token %}
 
+                    <input type="text" name="name" value="{{ name }}" hidden>
+
                     <div class="d-flex align-items-start">
                         <div class="nav flex-column nav-pills me-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <button class="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1"
@@ -170,8 +172,7 @@
 
             </div>
         </div>
-    </div>   
-
+    </div>
 {% endblock %}
 
 {% block script %}
@@ -194,6 +195,30 @@
                     radios[0].reportValidity();
                 }
             });
+        });
+
+        document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const faltantes = [];
+
+            for (let i = 1; i <= 21; i++) {
+                const radios = document.querySelectorAll(`input[name="p${i}"]`);
+                const algunoSeleccionado = Array.from(radios).some(r => r.checked);
+                if (!algunoSeleccionado) {
+                    faltantes.push(i);
+                }
+            }
+
+            if (faltantes.length > 0) {
+                Swal.fire({
+                    title: "Aún no terminas",
+                    text: `Falta responder los puntos ${faltantes.join(", ")}`,
+                    icon: "info"
+                });
+            } else {
+                this.closest('form').submit();
+            }
         });
     </script>
 {% endblock %}
