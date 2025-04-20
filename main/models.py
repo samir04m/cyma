@@ -23,7 +23,18 @@ class Questionnaire(models.Model):
     value19 = models.IntegerField()
     value20 = models.IntegerField()
     value21 = models.IntegerField()
+    depressionScore = models.IntegerField(default=0)
+    anxietyScore = models.IntegerField(default=0)
+    stressScore = models.IntegerField(default=0)
+    globalScore = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.depressionScore = self.getDepressionScore()
+        self.anxietyScore = self.getAnxietyScore()
+        self.stressScore = self.getStressScore()
+        self.globalScore = self.getGlobalScore()
+        super().save(*args, **kwargs)
 
     def getDepressionScore(self):
         return sum([self.value3, self.value5, self.value10, self.value13, self.value16, self.value17, self.value21])
