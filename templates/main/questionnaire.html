@@ -163,7 +163,7 @@
                                 {% opciones_respuesta 21 %}
 
                                 <div class="float-end">
-                                    <button type="submit" class="btn btn-outline-success">Terminar</button>
+                                    <button type="submit" class="btn btn-outline-success btn-lg m-3 w-150">Terminar</button>
                                 </div>
                             </div>
                         </div>
@@ -173,6 +173,11 @@
             </div>
         </div>
     </div>
+
+    <button type="button" id="btnAutoFill" class="btn btn-secondary mb-3">
+        Auto-completar radios
+    </button>
+    
 {% endblock %}
 
 {% block script %}
@@ -217,8 +222,22 @@
                     icon: "info"
                 });
             } else {
+                this.disabled = true;
+                this.innerHTML = `
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    <span role="status">Cargando...</span>
+                `;
                 this.closest('form').submit();
             }
         });
+
+        document.getElementById("btnAutoFill").addEventListener("click", function () {
+                for (let i = 1; i <= 21; i++) {
+                    const radios = document.getElementsByName(`p${i}`);
+                    if (radios.length > 0) {
+                        radios[0].checked = true; 
+                    }
+                }
+            });
     </script>
 {% endblock %}

@@ -10,3 +10,11 @@
     background-color: #2aa198 !important;
     border-color: #2aa198 !important;
 }
+
+.accordion-button:not(.collapsed) {
+    background-color: #bbded1 !important;
+}
+
+.text-justify {
+    text-align: justify;
+}
