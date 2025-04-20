@@ -1,0 +1,199 @@
+{% extends 'base/base.html' %}
+{% load myTags %}
+
+{% block content %}
+    <div class="container pt-2">
+        <div class="row">
+            <div class="col-12 animate__animated animate__fadeIn">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="d-flex align-items-start">
+                        <div class="nav flex-column nav-pills me-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1"
+                                type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">1
+                            </button>
+                            <button class="nav-link" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2"
+                                type="button" role="tab" aria-controls="v-pills-2" aria-selected="false">2
+                            </button>
+                            <button class="nav-link" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3"
+                                type="button" role="tab" aria-controls="v-pills-3" aria-selected="false">3
+                            </button>
+                            <button class="nav-link" id="v-pills-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-4"
+                                type="button" role="tab" aria-controls="v-pills-4" aria-selected="false">4
+                            </button>
+                            <button class="nav-link" id="v-pills-5-tab" data-bs-toggle="pill" data-bs-target="#v-pills-5"
+                                type="button" role="tab" aria-controls="v-pills-5" aria-selected="false">5
+                            </button>
+                            <button class="nav-link" id="v-pills-6-tab" data-bs-toggle="pill" data-bs-target="#v-pills-6"
+                                type="button" role="tab" aria-controls="v-pills-6" aria-selected="false">6
+                            </button>
+                            <button class="nav-link" id="v-pills-7-tab" data-bs-toggle="pill" data-bs-target="#v-pills-7"
+                                type="button" role="tab" aria-controls="v-pills-7" aria-selected="false">7
+                            </button>
+                            <button class="nav-link" id="v-pills-8-tab" data-bs-toggle="pill" data-bs-target="#v-pills-8"
+                                type="button" role="tab" aria-controls="v-pills-8" aria-selected="false">8
+                            </button>
+                            <button class="nav-link" id="v-pills-9-tab" data-bs-toggle="pill" data-bs-target="#v-pills-9"
+                                type="button" role="tab" aria-controls="v-pills-9" aria-selected="false">9
+                            </button>
+                            <button class="nav-link" id="v-pills-10-tab" data-bs-toggle="pill" data-bs-target="#v-pills-10"
+                                type="button" role="tab" aria-controls="v-pills-10" aria-selected="false">10
+                            </button>
+                            <button class="nav-link" id="v-pills-11-tab" data-bs-toggle="pill" data-bs-target="#v-pills-11"
+                                type="button" role="tab" aria-controls="v-pills-11" aria-selected="false">11
+                            </button>
+                            <button class="nav-link" id="v-pills-12-tab" data-bs-toggle="pill" data-bs-target="#v-pills-12"
+                                type="button" role="tab" aria-controls="v-pills-12" aria-selected="false">12
+                            </button>
+                            <button class="nav-link" id="v-pills-13-tab" data-bs-toggle="pill" data-bs-target="#v-pills-13"
+                                type="button" role="tab" aria-controls="v-pills-13" aria-selected="false">13
+                            </button>
+                            <button class="nav-link" id="v-pills-14-tab" data-bs-toggle="pill" data-bs-target="#v-pills-14"
+                                type="button" role="tab" aria-controls="v-pills-14" aria-selected="false">14
+                            </button>
+                            <button class="nav-link" id="v-pills-15-tab" data-bs-toggle="pill" data-bs-target="#v-pills-15"
+                                type="button" role="tab" aria-controls="v-pills-15" aria-selected="false">15
+                            </button>
+                            <button class="nav-link" id="v-pills-16-tab" data-bs-toggle="pill" data-bs-target="#v-pills-16"
+                                type="button" role="tab" aria-controls="v-pills-16" aria-selected="false">16
+                            </button>
+                            <button class="nav-link" id="v-pills-17-tab" data-bs-toggle="pill" data-bs-target="#v-pills-17"
+                                type="button" role="tab" aria-controls="v-pills-17" aria-selected="false">17
+                            </button>
+                            <button class="nav-link" id="v-pills-18-tab" data-bs-toggle="pill" data-bs-target="#v-pills-18"
+                                type="button" role="tab" aria-controls="v-pills-18" aria-selected="false">18
+                            </button>
+                            <button class="nav-link" id="v-pills-19-tab" data-bs-toggle="pill" data-bs-target="#v-pills-19"
+                                type="button" role="tab" aria-controls="v-pills-19" aria-selected="false">19
+                            </button>
+                            <button class="nav-link" id="v-pills-20-tab" data-bs-toggle="pill" data-bs-target="#v-pills-20"
+                                type="button" role="tab" aria-controls="v-pills-20" aria-selected="false">20
+                            </button>
+                            <button class="nav-link" id="v-pills-21-tab" data-bs-toggle="pill" data-bs-target="#v-pills-21"
+                                type="button" role="tab" aria-controls="v-pills-21" aria-selected="false">21
+                            </button>
+
+                        </div>
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab" tabindex="0">
+                                <p class="fs-5 color">Me costó mucho calmarme</p>
+                                {% opciones_respuesta 1 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab" tabindex="0">
+                                <p class="fs-5 color">Me di cuenta de que tenía la boca seca</p>
+                                {% opciones_respuesta 2 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab" tabindex="0">
+                                <p class="fs-5 color">No podía sentir nada positivo</p>
+                                {% opciones_respuesta 3 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab" tabindex="0">
+                                <p class="fs-5 color">Tuve problemas para respirar (p. ej., respirar muy rápido, o perder el aliento sin haber hecho un esfuerzo físico)</p>
+                                {% opciones_respuesta 4 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab" tabindex="0">
+                                <p class="fs-5 color">Se me hizo difícil motivarme para hacer cosas</p>
+                                {% opciones_respuesta 5 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab" tabindex="0">
+                                <p class="fs-5 color">Me descontrolé en ciertas situaciones</p>
+                                {% opciones_respuesta 6 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-7" role="tabpanel" aria-labelledby="v-pills-7-tab" tabindex="0">
+                                <p class="fs-5 color">Me sentí tembloroso/a (p. ej., manos temblorosas)</p>
+                                {% opciones_respuesta 7 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-8" role="tabpanel" aria-labelledby="v-pills-8-tab" tabindex="0">
+                                <p class="fs-5 color">Sentí que estaba muy nervioso/a</p>
+                                {% opciones_respuesta 8 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-9" role="tabpanel" aria-labelledby="v-pills-9-tab" tabindex="0">
+                                <p class="fs-5 color">Estuve preocupado/a por situaciones en las cuales podría sentir pánico y hacer el ridículo</p>
+                                {% opciones_respuesta 9 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-10" role="tabpanel" aria-labelledby="v-pills-10-tab" tabindex="0">
+                                <p class="fs-5 color">10. Sentí que no tenía nada por qué vivir</p>
+                                {% opciones_respuesta 10 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-11" role="tabpanel" aria-labelledby="v-pills-11-tab" tabindex="0">
+                                <p class="fs-5 color">Noté que me estaba poniendo intranquilo/a</p>
+                                {% opciones_respuesta 11 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-12" role="tabpanel" aria-labelledby="v-pills-12-tab" tabindex="0">
+                                <p class="fs-5 color">Se me hizo difícil relajarme</p>
+                                {% opciones_respuesta 12 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-13" role="tabpanel" aria-labelledby="v-pills-13-tab" tabindex="0">
+                                <p class="fs-5 color">Me sentí triste y deprimido/a</p>
+                                {% opciones_respuesta 13 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-14" role="tabpanel" aria-labelledby="v-pills-14-tab" tabindex="0">
+                                <p class="fs-5 color">No toleré que algo me distrajera de lo que estaba haciendo</p>
+                                {% opciones_respuesta 14 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-15" role="tabpanel" aria-labelledby="v-pills-15-tab" tabindex="0">
+                                <p class="fs-5 color">Estuve a punto de tener un ataque de pánico</p>
+                                {% opciones_respuesta 15 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-16" role="tabpanel" aria-labelledby="v-pills-16-tab" tabindex="0">
+                                <p class="fs-5 color">Fui incapaz de entusiasmarme con algo</p>
+                                {% opciones_respuesta 16 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-17" role="tabpanel" aria-labelledby="v-pills-17-tab" tabindex="0">
+                                <p class="fs-5 color">Sentí que valía muy poco como persona</p>
+                                {% opciones_respuesta 17 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-18" role="tabpanel" aria-labelledby="v-pills-18-tab" tabindex="0">
+                                <p class="fs-5 color">Sentí que valía muy poco como persona</p>
+                                {% opciones_respuesta 18 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-19" role="tabpanel" aria-labelledby="v-pills-19-tab" tabindex="0">
+                                <p class="fs-5 color">Sentí los latidos de mi corazón a pesar de que no había hecho ningún esfuerzo físico</p>
+                                {% opciones_respuesta 19 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-20" role="tabpanel" aria-labelledby="v-pills-20-tab" tabindex="0">
+                                <p class="fs-5 color">Sentí miedo sin saber por qué</p>
+                                {% opciones_respuesta 20 %}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-21" role="tabpanel" aria-labelledby="v-pills-21-tab" tabindex="0">
+                                <p class="fs-5 color">Sentí que la vida no tenía ningún sentido</p>
+                                {% opciones_respuesta 21 %}
+
+                                <div class="float-end">
+                                    <button type="submit" class="btn btn-outline-success">Terminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>   
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.querySelectorAll('[id^="btnGoTo"]').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const currentId = parseInt(this.id.replace('btnGoTo', ''));
+                const questionName = `p${currentId - 1}`;
+
+                const radios = document.querySelectorAll(`input[name="${questionName}"]`);
+                const isChecked = Array.from(radios).some(radio => radio.checked);
+
+                if (isChecked) {
+                    const nextTab = document.querySelector(`#v-pills-${currentId}-tab`);
+                    const tab = new bootstrap.Tab(nextTab);
+                    tab.show();
+                } else {
+                    radios[0].reportValidity();
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,8 +1,32 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block content %}
     <div class="container">
-        <h1 class="text-center">Bienvenido a CYMA</h1>
-        <p class="text-center">Tu plataforma de gestión de proyectos.</p>
+        <div class="row">
+            <div class="offset-lg-4 col-lg-4 text-center py-5 animate__animated animate__fadeIn">
+                <img src="{% static 'img/logo.jpg' %}" alt="logo" class="rounded" width="100">
+                <h1 class="my-4">Bienvenido a CYMA</h1>
+                <div class="px-4">
+                    <p class="my-4 fs-4">Antes de iniciar el cuestionario por favor indícanos cuál es tu nombre</p>
+
+                    <input type="text" class="form-control fs-4" name="name" placeholder="Ingresa tu nombre" required>
+
+                    <a href="{% url 'main:Questionnaire' %}" class="btn btn-outline-success btn-lg m-4 w-150" id="btnSpinner">Continuar</a>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('btnSpinner').addEventListener('click', function () {
+            const btn = this;
+            btn.disabled = true;
+            btn.innerHTML = `
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Cargando...</span>
+            `;
+        });
+    </script>
+    
 {% endblock %}
