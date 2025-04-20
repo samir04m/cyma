@@ -2,10 +2,10 @@
 {% load myTags %}
 
 {% block content %}
-<div class="container">
-    <h2 class="color mb-3">
-        {{ q.name }}, estos son los resultados:
-    </h2>
+    <div class="container animate__animated animate__fadeIn">
+        <h2 class="color mb-3">
+            {{ q.name }}, estos son tus resultados:
+        </h2>
         <div class="accordion" id="accordionResult">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -65,5 +65,14 @@
             </div>
         </div>
 
-</div>
+        <div class="container-fluid my-3">
+            <h5 class="color">
+                ¿Te gustaria recibir entrenamiento exclusivo de técnicas de respiración o contar con la asesoría de un profesional del área de la psicología?
+            </h5>
+            <div class="text-center my-4">
+                <a href="{% url 'main:Subscription' %}" class="btn btn-outline-success">Más información</a>   
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

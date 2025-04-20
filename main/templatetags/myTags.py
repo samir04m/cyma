@@ -36,7 +36,7 @@ def opciones_respuesta(id):
     if id != 21:
         html += f'''
         <div class="float-end">
-            <button type="button" class="btn btn-outline-success btn-lg m-3 w-150" id="btnGoTo{siguiente_id}">
+            <button type="button" class="btn btn-outline-success m-3 w-150" id="btnGoTo{siguiente_id}">
                 Siguiente
             </button>
         </div>

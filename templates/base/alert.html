@@ -4,7 +4,8 @@
             Swal.fire({
                 text: "{{ message }}",
                 icon: "{% if message.tags == 'error' %}error{% elif message.tags == 'success' %}success{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
-                confirmButtonText: 'Aceptar'
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#4d657d'
             });
         {% endfor %}
     </script>

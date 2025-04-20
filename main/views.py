@@ -46,3 +46,9 @@ def ResultView(request, questionnaire_id):
         'q': questionnaire,
     }
     return render(request, 'main/result.html', context)
+
+def SubscriptionView(request):
+    return render(request, 'main/subscription.html')
+
+def PrimeHomeView(request):
+    return render(request, 'main/prime_home.html', {})

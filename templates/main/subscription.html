@@ -1,0 +1,128 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load myTags %}
+
+{% block content %}
+    <div class="container animate__animated animate__fadeIn" >
+        <h2 class="color mb-3 text">
+            Conoce CYMA Prime
+        </h2>
+        <hr>
+        <h5>
+            ¡Suscríbete a CYMA Prime y transforma tu bienestar emocional!
+        </h5>
+        <p class="text-justify">
+            Con tu suscripción mensual, obtendrás acceso a beneficios exclusivos diseñados para ayudarte a crecer y sentirte mejor día a día:
+        </p>
+        <ul>
+            <li>
+                <b>CYMA Academy:</b> nuestra academia virtual donde aprenderás técnicas de respiración y bienestar emocional, a través de videos guiados y material exclusivo creado por expertos.
+            </li>
+            <li class="mt-3">
+                <b>Asesoría personalizada:</b> recibe orientación directa de un profesional en psicología, quien te escuchará, responderá tus inquietudes y te realizará una evaluación más profunda y personalizada para apoyarte en tu proceso.
+            </li>
+        </ul>
+        <p class="color fs-3">
+            <b>Precio mensual:</b> $ 44.900 COP
+        </p>
+        <div class="text-center">
+            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#payModal">
+                <i class="fa-regular fa-credit-card"></i> <span class="mx-2">Realizar pago</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="payModal" tabindex="-1" aria-labelledby="payModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="payModalLabel">Subscripción a CYMA Prime</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Puedes pagar con tarjeta de crédito o débito:</p>
+                    
+                    <div class="mb-3">
+                        <label for="cardName" class="form-label">Nombre del titular</label>
+                        <input type="text" class="form-control" id="cardName" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Número de tarjeta</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label for="expDate" class="form-label">Fecha de expiración</label>
+                            <input type="text" class="form-control" id="expDate" placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="cvc" class="form-label">Código CVC</label>
+                            <input type="text" class="form-control" id="cvc" placeholder="123" required>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-outline-success" id="btnPay">Realizar pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cardNumberInput = document.getElementById("cardNumber");
+            const expDateInput = document.getElementById("expDate");
+            const cvcInput = document.getElementById("cvc");
+        
+            cardNumberInput.addEventListener("input", function (e) {
+                let value = e.target.value.replace(/\D/g, "");
+                value = value.substring(0, 16);
+                const formatted = value.match(/.{1,4}/g)?.join(" ") ?? "";
+                e.target.value = formatted;
+            });
+        
+            expDateInput.addEventListener("input", function (e) {
+                let value = e.target.value.replace(/\D/g, "");
+                value = value.substring(0, 4);
+                if (value.length >= 3) {
+                    value = value.substring(0, 2) + "/" + value.substring(2);
+                }
+                e.target.value = value;
+            });
+        
+            cvcInput.addEventListener("input", function (e) {
+                let value = e.target.value.replace(/\D/g, "");
+                e.target.value = value.substring(0, 3);
+            });
+
+            const payBtn = document.getElementById("btnPay");
+
+            payBtn.addEventListener("click", function () {
+                const audio = new Audio("{% static 'sounds/pay.mp3' %}");
+                audio.play();
+
+                Swal.fire({
+                    title: '¡Pago exitoso!',
+                    text: 'Tu suscripción a CYMA Prime ha sido activada.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#4d657d'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "{% url 'main:PrimeHome' %}";
+                    }
+                });
+            });
+
+        });
+    </script>
+{% endblock %}
