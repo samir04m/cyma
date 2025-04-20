@@ -115,7 +115,7 @@
                                 {% opciones_respuesta 9 %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-10" role="tabpanel" aria-labelledby="v-pills-10-tab" tabindex="0">
-                                <p class="fs-5 color">10. Sentí que no tenía nada por qué vivir</p>
+                                <p class="fs-5 color">Sentí que no tenía nada por qué vivir</p>
                                 {% opciones_respuesta 10 %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-11" role="tabpanel" aria-labelledby="v-pills-11-tab" tabindex="0">
@@ -163,6 +163,12 @@
                                 {% opciones_respuesta 21 %}
 
                                 <div class="float-end">
+                                    {% if user.is_authenticated %}
+                                        <button type="button" id="btnAutoFill" class="btn btn-secondary m-3">
+                                            Llenar automáticamente
+                                        </button>
+                                        <br>
+                                    {% endif %}
                                     <button type="submit" class="btn btn-outline-success m-3 w-150">Terminar</button>
                                 </div>
                             </div>
@@ -174,10 +180,6 @@
         </div>
     </div>
 
-    <button type="button" id="btnAutoFill" class="btn btn-secondary mb-3">
-        Auto-completar radios
-    </button>
-    
 {% endblock %}
 
 {% block script %}

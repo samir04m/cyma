@@ -2,11 +2,214 @@
 {% load myTags %}
 
 {% block content %}
-    <div class="container animate__animated animate__fadeIn" >
+    <div class="container animate__animated animate__fadeIn">
         <h2 class="color mb-3 text">
-            Bienvenido a CYMA Prime
+            Bienvenido a CYMA Prime <i class="fa-solid fa-crown text-primary"></i>
         </h2>
-        <hr>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                    <i class="fa-light fa-graduation-cap mx-1"></i> Academy
+                </button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                    <i class="fa-light fa-user-tie-hair mx-1"></i> Asesoría
+                </button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active p-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                <p class="text-justify">
+                    Aquí puedes aprender todo acerca de técnicas de respiración, elige la que más te guste o se adapte a tus necesidades. Si necesitas ayuda siempre puedes contar con la asesoría de un profesional en la pestaña correspondiente.
+                </p>
+
+                <div class="accordion accordion-flush" id="accordionInfo">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Respiración diafragmática
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionInfo">
+                            <div class="accordion-body">
+                                <p>
+                                    <b>Objetivo:</b> Relajación profunda y reducción del estrés.
+                                </p>
+                                <p>
+                                    <b>Cómo se hace:</b>  Inhalas profundamente por la nariz, haciendo que el abdomen (no el pecho) se expanda. Luego exhalas lentamente por la boca o nariz.
+                                </p>
+                                <p>
+                                    <b>Útil para:</b> Ansiedad, insomnio, meditación.
+                                </p>
+                                <div class="row">
+                                    <div class="offset-md-3 offset-lg-4col-md-6 col-lg-3 text-center">
+                                        <h5>Video explicativo</h5>
+                                        <div class="ratio ratio-9x16">
+                                            <iframe src="https://www.youtube.com/embed/isUJGq_GLas" title="YouTube video Respiracion diafragmática" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Respiración 4-7-8
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionInfo">
+                            <div class="accordion-body">
+                                <p>
+                                    <b>Objetivo:</b> Calmar el sistema nervioso rápidamente.
+                                </p>
+                                <p>
+                                    <b>Cómo se hace:</b> Inhalas durante 4 segundos. Mantienes la respiración durante 7 segundos. Exhalas lentamente
+                                    durante 8 segundos.
+                                </p>
+                                <p>
+                                    <b>Útil para:</b> Dormir mejor, reducir la ansiedad, controlar ataques de pánico.
+                                </p>
+                                <div class="row">
+                                    <div class="offset-md-3 offset-lg-4col-md-6 col-lg-3 text-center">
+                                        <h5>Video explicativo</h5>
+                                        <div class="ratio ratio-9x16">
+                                            <iframe src="https://www.youtube.com/embed/4hB_v2mJdGg?si=PsedP00_x1ur7_qn" title="YouTube video Respiración 4-7-8" allowfullscreen></iframe>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                Respiración en caja
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionInfo">
+                            <div class="accordion-body">
+                                <p>
+                                    <b>Objetivo:</b> Estabilidad emocional y enfoque mental.
+                                </p>
+                                <p>
+                                    <b>Cómo se hace:</b> Inhalas por 4 segundos. Retienes 4 segundos. Exhalas 4 segundos. Pausa 4 segundos antes de
+                                    volver a inhalar.
+                                </p>
+                                <p>
+                                    <b>Útil para:</b> Estrés, rendimiento en situaciones de alta presión (usado por Navy SEALs, por ejemplo).
+                                </p>
+                                <div class="row">
+                                    <div class="offset-md-3 offset-lg-4col-md-6 col-lg-3 text-center">
+                                        <h5>Video explicativo</h5>
+                                        <div class="ratio ratio-9x16">
+                                            <iframe src="https://www.youtube.com/embed/RYq6dpQNh94" title="YouTube video  Respiración en caja" allowfullscreen></iframe>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                Técnica Wim Hof
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>
+                                    <b>Objetivo:</b> Aumentar energía, mejorar inmunidad, tolerancia al frío.
+                                </p>
+                                <p>
+                                    <b>Cómo se hace:</b> 30-40 respiraciones profundas y rápidas. Exhalación completa y retención sin aire. Inhalación
+                                    profunda y retención por 15 segundos. Repetir por varias rondas.
+                                </p>
+                                <p>
+                                    <b>Útil para:</b> Deportistas, fortalecimiento mental y físico.
+                                </p>
+                                <div class="row">
+                                    <div class="offset-md-3 offset-lg-4col-md-6 col-lg-3 text-center">
+                                        <h5>Video explicativo</h5>
+                                        <div class="ratio ratio-9x16">
+                                            <iframe src="https://www.youtube.com/embed/bpqq_6KRazk?si=PXoTa0zJyC1wGeur" title="YouTube video Técnica Wim Hof" allowfullscreen></iframe>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                Respiración coherente
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionInfo">
+                            <div class="accordion-body">
+                                <p>
+                                    <b>Objetivo:</b> Ritmo cardíaco estable y reducción del estrés.
+                                </p>
+                                <p>
+                                    <b>Cómo se hace:</b> Respiras a un ritmo de 5 segundos inhalando y 5 segundos exhalando, haciendo 5 respiraciones
+                                    por minuto.
+                                </p>
+                                <p>
+                                    <b>Útil para:</b> Manejo de la ansiedad, terapia de trauma.
+                                </p>
+                                <div class="row">
+                                    <div class="offset-md-3 offset-lg-4col-md-6 col-lg-3 text-center">
+                                        <h5>Video explicativo</h5>
+                                        <div class="ratio ratio-9x16">
+                                            <iframe src="https://www.youtube.com/embed/lifpnZMpmDE?si=iukcO6k1prxCnldE" title="YouTube video Respiración coherente" allowfullscreen></iframe>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane fade p-3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                <p class="text-justify">
+                    Aquí puedes recibir asesoría personalizada de uno de nuestros profesionales en psicología, quien te escuchará y responderá tus inquietudes. 
+                </p>
+                <div class="my-4">
+                    <textarea class="form-control" placeholder="Cuentanos en que te gustaria recibir asesoría" rows="4"></textarea>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-success" id="btnAdvisoryRequest">Crear solicitud</button>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
-    
+
+{% block script %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const btnAdvisoryRequest = document.getElementById("btnAdvisoryRequest");
+
+            btnAdvisoryRequest.addEventListener("click", function () {
+                Swal.fire({
+                    title: '¡Solicitud creada!',
+                    text: 'Uno de nuestros profesionales se estará comunicando contigo en el menor tiempo posible por medio del teléfono que registrastes.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#4d657d'
+                });
+            });
+
+        });
+    </script>
+{% endblock %}

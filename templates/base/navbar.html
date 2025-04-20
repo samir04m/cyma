@@ -7,5 +7,14 @@
                 CYMA
             </span>
         </a>
+        {% if request.path == '/primeHome/' %}
+        <div class="ms-auto">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item px-1">
+                    <a href="{% url 'main:Home' %}" class="nav-link">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
     </div>
 </nav>
