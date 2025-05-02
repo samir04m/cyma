@@ -21,23 +21,6 @@
     </div>
 {% endblock %}
 
-{% block scripts %}
-    <script>
-        document.getElementById('btnSpinner').addEventListener('click', function (event) {
-            const form = this.closest('form');
-
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                form.reportValidity();
-                return;
-            }
-
-            this.disabled = true;
-            this.innerHTML = `
-                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                <span role="status">Cargando...</span>
-            `;
-            form.submit();
-        });
-    </script>
+{% block script %}
+    {% include 'base/modules/btnSpinner.html' %}
 {% endblock %}

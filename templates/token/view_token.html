@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6 animate__animated animate__fadeIn">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'main:CreateRegistrationToken' %}">Crear Token</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Token {{ token.token }}</li>
+                </ol>
+            </nav>
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="color mb-4 text-center">Enlace de Registro</h3>
+                    {% if token.active %}
+                        <h4 class="text-center mb-4">
+                            ID: <span class="color">{{ token.name }}</span>
+                            <br>
+                            Token: <span class="color">{{ token.token }}</span>
+                        </h4>
+
+                        <div class="input-group my-3">
+                            <input type="text" class="form-control" id="tokenInput" value="{{ url }}" readonly>
+                            <button class="btn btn-outline-secondary" type="button" onclick="copyToken()">Copiar</button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <a target="_blank" href="https://api.whatsapp.com/send/?phone=57{{ token.name }}&text={{ whatsapp_message|urlencode }}"
+                                class="btn btn-success my-3">
+                                Enviar por WhatsApp
+                            </a>
+                        </div>    
+    
+                    {% else %}
+                        {% if token.user %}
+                            <p>Este token fue usado por:</p>
+                            <p>{{ token.user.first_name }} - {{ token.user }}</p>
+                            <p>Fecha registro: {{ token.user_registration_date|date:"d/m/Y h:i a" }}</p>
+                        {% else %}
+                            <p class="text-success">
+                                Este Token no está activo.
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            {% include 'base/modules/btnTokensView.html' %}
+        </div>
+    </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="copyToast" class="toast align-items-center text-white bg-success border-0" role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Token copiado!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Cerrar"></button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function copyToken() {
+        const input = document.getElementById("tokenInput");
+        input.select();
+        input.setSelectionRange(0, 99999); // Para dispositivos móviles
+
+        try {
+            const success = document.execCommand("copy");
+            if (success) {
+                const toastEl = document.getElementById('copyToast');
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            } else {
+                alert("No se pudo copiar el token");
+            }
+        } catch (err) {
+            alert("Error al copiar");
+        }
+    }
+</script>
+{% endblock %}

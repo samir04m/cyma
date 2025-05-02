@@ -1,20 +1,39 @@
 {% load static %}
-<nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'main:Home' %}">
-            <img src="{% static 'img/logo.jpg' %}" alt="Logo" width="30" class="rounded mx-2 d-inline-block align-text-top">
+        <a class="navbar-brand" href="{% url 'main:Index' %}">
+            <img src="{% static 'img/logo.jpg' %}" alt="Logo" width="30"
+                class="rounded mx-2 d-inline-block align-text-top">
             <span class="color">
                 CYMA
             </span>
         </a>
-        {% if request.path == '/primeHome/' %}
-        <div class="ms-auto">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCyma"
+            aria-controls="navbarCyma" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCyma">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item px-1">
-                    <a href="{% url 'main:Home' %}" class="nav-link">Cerrar Sesión</a>
-                </li>
+
+            </ul>
+
+            <ul class="navbar-nav m -auto">
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:CreateRegistrationToken' %}">Crear Token</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a href="{% url 'main:Logout' %}" class="nav-link">Cerrar Sesión</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'main:Login' %}" class="nav-link">Iniciar Sesión</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
-        {% endif %}
+        
     </div>
 </nav>

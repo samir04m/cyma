@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6 offset-lg-4 col-lg-4 animate__animated animate__fadeIn">
+                <div class="card shadow">
+                    <div class="card-body">
+                        {% if token.active %}
+                            <h4 class="card-title text-center">Crear cuenta</h4>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="first_name" class="form-label">Nombre</label>
+                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Ingresa tu nombre" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Número de teléfono</label>
+                                    <input type="number" name="username" class="form-control" id="username" placeholder="Ingresa tu número" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Ingresa una contraseña" autocomplete="off" required>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-success">Crear cuenta</button>
+                                </div>
+                            </form>
+                        {% else %}
+                            <h4 class="text-center my-5 animate__animated animate__fadeIn">
+                                Este enlace expiró
+                                <br><br>
+                                <i class="fa-light fa-link-slash fa-2x"></i>
+                                <i class="fa-light fa-face-smile-tear fa-2x"></i>
+                            </h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

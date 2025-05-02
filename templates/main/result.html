@@ -12,7 +12,7 @@
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         Dimensión: Depresión 
-                        {% if user.is_authenticated %}<span class="badge bg-dark mx-2">{{ q.depressionScore }}</span>{% endif %}
+                        <span class="badge bg-dark mx-2">{{ q.depressionScore }}</span>
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionResult">
@@ -26,7 +26,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Dimensión: Ansiedad
-                        {% if user.is_authenticated %}<span class="badge bg-dark mx-2">{{ q.anxietyScore }}</span>{% endif %}
+                        <span class="badge bg-dark mx-2">{{ q.anxietyScore }}</span>
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionResult">
@@ -40,7 +40,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         Dimensión: Estrés
-                        {% if user.is_authenticated %}<span class="badge bg-dark mx-2">{{ q.stressScore }}</span>{% endif %}
+                        <span class="badge bg-dark mx-2">{{ q.stressScore }}</span>
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionResult">
@@ -54,7 +54,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                         Dimensión: Puntaje Global
-                        {% if user.is_authenticated %}<span class="badge bg-dark mx-2">{{ q.globalScore }}</span>{% endif %}
+                        <span class="badge bg-dark mx-2">{{ q.globalScore }}</span>
                     </button>
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionResult">
@@ -70,7 +70,7 @@
                 ¿Te gustaria recibir entrenamiento exclusivo de técnicas de respiración o contar con la asesoría de un profesional del área de la psicología?
             </h5>
             <div class="text-center my-4">
-                <button class="btn btn-outline-success w-150" id="btnSpinner">Más información</button>   
+                <button class="btn btn-outline-success w-150" id="btnSpinnerNoForm">Más información</button>   
             </div>
         </div>
 
@@ -81,7 +81,7 @@
 {% block script %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const btnSpinner = document.getElementById('btnSpinner');
+            const btnSpinner = document.getElementById('btnSpinnerNoForm');
         
             btnSpinner.addEventListener('click', function (e) {
 

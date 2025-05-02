@@ -50,8 +50,15 @@ class Questionnaire(models.Model):
         return self.getDepressionScore() + self.getAnxietyScore() + self.getStressScore()
 
 class RegistrationToken(models.Model):
+    name = models.CharField(max_length=50)
     token = models.CharField(max_length=6, unique=True, db_index=True)
     active = models.BooleanField(default=True, db_index=True)
     creation_date = models.DateTimeField(auto_now_add=True)
-    user_registration_date = models.DateTimeField()
+    user_registration_date = models.DateTimeField(null=True, blank=True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
+
+    class Meta:
+        ordering = ['-creation_date']
+        
+    def __str__(self):
+        return f"{self.name} - {self.token} - {self.active}"

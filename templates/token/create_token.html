@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6 offset-lg-4 col-lg-4 animate__animated animate__fadeIn">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="color mb-3 text-center">Crear Token de Registro</h3>
+                        <form method="POST" action="{% url 'main:CreateRegistrationToken' %}">
+                            {% csrf_token %}
+                            <div class="my-4">
+                                <label for="name" class="form-label">Teléfono de la persona</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Ingresa el número de Whatsapp" required>
+                            </div>
+                            <div class="text-center my-4">
+                                <button type="submit" class="btn btn-success" id="btnSpinner">Crear Token</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% include 'base/modules/btnTokensView.html' %}
+            </div>
+        </div>
+    </div> 
+{% endblock %}
+
+{% block script %}
+    {% include 'base/modules/btnSpinner.html' %}
+{% endblock %}
