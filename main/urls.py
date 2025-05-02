@@ -16,4 +16,8 @@ urlpatterns = [
     path('register/<str:token>/', views.RegisterView, name='RegisterView'),
     path('login/', CustomLoginView.as_view(), name='Login'),
     path('logout/', views.Logout, name='Logout'),
+
+    path('init/', views.Init, name='Init'),
+    path('createTestTokens/', views.CreateTestTokens, name='CreateTestTokens'),
+    path('avg/<int:query_id>/<int:results_count>/', views.AvgResults, name='AvgResults'),
 ]

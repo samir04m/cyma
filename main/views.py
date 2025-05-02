@@ -7,13 +7,14 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.utils import timezone
 from django.db import transaction
+from django.db.models import Avg
+from django.conf import settings
 from django.urls import reverse
+from functools import wraps
 import random
 import string
+import time
 from .models import *
-
-from django.shortcuts import redirect
-from functools import wraps
 
 def staff_required(view_func):
     @wraps(view_func)
@@ -130,10 +131,23 @@ def TokensView(request):
         return redirect('main:Index')
 
     query = request.GET.get('q')
+
+    if settings.MEASURE_QUERY_TIME:
+        start_time = time.perf_counter()
+
     if query:
         tokens = RegistrationToken.objects.filter(name__icontains=query)
+        description = f"Query RegistrationToken, query ({query})"
+        query_id = 2
     else:
         tokens = RegistrationToken.objects.all()
+        description = f"Query RegistrationToken all"
+        query_id = 1
+
+    if settings.MEASURE_QUERY_TIME:
+        end_time = time.perf_counter()
+        elapsed_ms = (end_time - start_time) * 1000
+        CreateQueryTimeLog(description, query_id, tokens.count(), elapsed_ms)
     
     context = {
         'tokens': tokens,
@@ -171,6 +185,79 @@ def RegisterView(request, token):
             return redirect('main:RegisterView', token=token)
 
     return render(request, 'auth/register.html', {'token': registrationToken})
+
+def AvgResults(request, query_id, results_count):
+    average = QueryTimeLog.objects.filter(query_id=query_id, results_count=results_count).aggregate(
+        avg_ms=Avg('milliseconds')
+    )['avg_ms']
+
+    if average is not None:
+        message = f"El promedio de tiempo de respuesta para {results_count} resultados es: {average} ms"
+    else:
+        message = f"No hay resultados"
+
+    return HttpResponse(message)
+
+def Init(request):
+    creation = False
+
+    user = User.objects.filter(username='admin').first()
+    if not user:
+        user = User.objects.create_user(
+            username='admin',
+            password='pasy7532',
+        )
+        user.is_staff = True
+        user.is_superuser = True
+        user.save()
+        creation = True
+
+    yesid = User.objects.filter(username='yesid').first()
+    if not yesid:
+        yesid = User.objects.create_user(
+            username='yesid',
+            password='pasy7532',
+        )
+        yesid.is_staff = True
+        yesid.is_superuser = True
+        yesid.save()
+        creation = True
+
+    if creation:
+        messages.success(request, "Usuarios creados exitosamente.")
+    else:
+        messages.info(request, "Los usuarios ya existen.")
+    
+    return redirect('main:Login')
+
+def CreateTestTokens(request):
+    tokens = []
+    for i in range(100):
+        num = 3001001000 + i 
+        tokens.append(
+            RegistrationToken(
+                name=str(num),
+                token=generate_token()
+            )
+        )
+
+    RegistrationToken.objects.bulk_create(tokens)
+    messages.success(request, "Tokens creados exitosamente.")
+    return redirect('main:TokensView')
+
+
+def CreateQueryTimeLog(description, query_id, results_count, milliseconds):
+    try:
+        with transaction.atomic():
+            log = QueryTimeLog(
+                description=description,
+                query_id=query_id,
+                results_count=results_count,
+                milliseconds=milliseconds
+            )
+            log.save()
+    except Exception as ex:
+        print(ex)
 
 def GetToken(token):
     return RegistrationToken.objects.filter(token=token).first()

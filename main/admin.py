@@ -13,3 +13,11 @@ class RegistrationTokenAdmin(admin.ModelAdmin):
     search_fields = ('token', 'name', 'user__username')
     ordering = ('-creation_date',)
     readonly_fields = ['creation_date']
+
+@admin.register(QueryTimeLog)
+class QueryTimeLogAdmin(admin.ModelAdmin):
+    list_display = ('description', 'query_id', 'results_count', 'milliseconds', 'query_time')
+    list_filter = ('query_time',)
+    search_fields = ('description',)
+    ordering = ('-query_time',)
+    readonly_fields = ['query_time']

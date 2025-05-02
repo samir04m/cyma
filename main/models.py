@@ -50,7 +50,7 @@ class Questionnaire(models.Model):
         return self.getDepressionScore() + self.getAnxietyScore() + self.getStressScore()
 
 class RegistrationToken(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, db_index=True)
     token = models.CharField(max_length=6, unique=True, db_index=True)
     active = models.BooleanField(default=True, db_index=True)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -62,3 +62,16 @@ class RegistrationToken(models.Model):
         
     def __str__(self):
         return f"{self.name} - {self.token} - {self.active}"
+
+class QueryTimeLog(models.Model):
+    description = models.CharField(max_length=250)
+    query_id = models.IntegerField(db_index=True)
+    results_count = models.IntegerField(db_index=True)
+    milliseconds = models.FloatField()
+    query_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-query_time']
+
+    def __str__(self):
+        return f"{self.description} - {self.results_count} - {self.milliseconds} - {self.query_time}"

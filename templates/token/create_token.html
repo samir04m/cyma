@@ -12,7 +12,7 @@
                             {% csrf_token %}
                             <div class="my-4">
                                 <label for="name" class="form-label">Teléfono de la persona</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Ingresa el número de Whatsapp" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Ingresa el número de Whatsapp" autocomplete="off" required>
                             </div>
                             <div class="text-center my-4">
                                 <button type="submit" class="btn btn-success" id="btnSpinner">Crear Token</button>
