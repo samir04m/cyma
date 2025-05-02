@@ -3,7 +3,8 @@ from .models import *
 
 @admin.register(Questionnaire)
 class QuestionnaireAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'depressionScore', 'anxietyScore', 'stressScore', 'globalScore', 'date']
+    list_display = ['id', 'name', 'ipAddress', 'depressionScore', 'anxietyScore', 'stressScore', 'globalScore', 'user', 'date']
+    search_fields = ('name', 'user__username')
     readonly_fields = ['date']
 
 @admin.register(RegistrationToken)

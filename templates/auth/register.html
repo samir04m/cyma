@@ -16,15 +16,16 @@
                                     <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Ingresa tu nombre" autocomplete="off" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Número de teléfono</label>
-                                    <input type="number" name="username" class="form-control" id="username" placeholder="Ingresa tu número" autocomplete="off" required>
+                                    <label for="username" class="form-label">Número de Teléfono</label>
+                                    <input type="number" name="username" class="form-control" id="username" placeholder="Ingresa tu celular" autocomplete="off" required>
+                                    <div id="usernameError" class="text-danger mt-1"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Contraseña</label>
                                     <input type="password" name="password" class="form-control" id="password" placeholder="Ingresa una contraseña" autocomplete="off" required>
                                 </div>
                                 <div class="text-center mt-4">
-                                    <button type="submit" class="btn btn-success">Crear cuenta</button>
+                                    <button type="submit" class="btn btn-success" id="btnSpinner">Crear cuenta</button>
                                 </div>
                             </form>
                         {% else %}
@@ -40,4 +41,37 @@
             </div>
         </div>
     </div> 
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.getElementById('username');
+            const errorDiv = document.getElementById('usernameError');
+
+            input.addEventListener('input', function () {
+                let value = input.value;
+
+                // Eliminar todo lo que no sea dígito
+                value = value.replace(/\D/g, '');
+
+                // Limitar a 10 caracteres
+                if (value.length > 10) {
+                    value = value.slice(0, 10);
+                }
+
+                input.value = value;
+
+                // Validaciones
+                if (value && !value.startsWith('3')) {
+                    errorDiv.textContent = "El número debe comenzar con 3.";
+                } else if (value.length > 0 && value.length < 10) {
+                    errorDiv.textContent = "El número debe tener 10 dígitos.";
+                } else {
+                    errorDiv.textContent = "";
+                }
+            });
+        });
+    </script>
+    {% include 'base/modules/btnSpinner.html' %}
 {% endblock %}
