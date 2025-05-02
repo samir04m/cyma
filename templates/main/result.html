@@ -65,15 +65,16 @@
             </div>
         </div>
 
-        <div class="container-fluid my-3">
-            <h5 class="color">
-                ¿Te gustaria aprender sobre técnicas de respiración y mejoramiento de hábitos de sueño?
-            </h5>
-            <div class="text-center my-4">
-                <button class="btn btn-outline-success w-150" id="btnSpinnerNoForm">Más información</button>   
+        {% if not user.is_authenticated %}
+            <div class="container-fluid my-3">
+                <h5 class="color">
+                    ¿Te gustaria aprender sobre técnicas de relajación y como mejorar tus hábitos de sueño?
+                </h5>
+                <div class="text-center my-4">
+                    <button class="btn btn-outline-success w-150" id="btnSpinnerNoForm">Más información</button>   
+                </div>
             </div>
-        </div>
-
+        {% endif %}
     </div>
 {% endblock %}
 

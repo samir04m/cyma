@@ -7,6 +7,7 @@ urlpatterns = [
     path('home/', views.HomeView, name='HomeView'),
     path('questionnaire/', views.QuestionnaireView, name='Questionnaire'),
     path('result/<int:questionnaire_id>/', views.ResultView, name='Result'),
+    path('myResult/', views.MyResultView, name='MyResultView'),
     path('subscription/', views.SubscriptionView, name='Subscription'),
 
     path('createToken/', views.CreateRegistrationToken, name='CreateRegistrationToken'),

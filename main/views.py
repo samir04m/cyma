@@ -53,6 +53,7 @@ def QuestionnaireView(request):
         fields = {
             'name': data.get('name'),
             'ipAddress': getClientIp(request),
+            'user': request.user if request.user.is_authenticated else None,
         }
         try:
             with transaction.atomic():
@@ -188,6 +189,16 @@ def RegisterView(request, token):
 
     return render(request, 'auth/register.html', {'token': registrationToken})
 
+@login_required
+def MyResultView(request):
+    questionnaire = Questionnaire.objects.filter(user=request.user).first()
+    if questionnaire:
+        return redirect('main:Result', questionnaire_id=questionnaire.id)
+    else:
+        messages.info(request, "No se ha encontrado ningún resultado relacionado a tu usuario, sin embargo, puedes realizar el cuestionario a continuación.")
+        url = reverse('main:Questionnaire')
+        return redirect(f'{url}?name={request.user.first_name}')
+
 def AvgResults(request, query_id, results_count):
     average = QueryTimeLog.objects.filter(query_id=query_id, results_count=results_count).aggregate(
         avg_ms=Avg('milliseconds')
@@ -262,10 +273,10 @@ def CreateQueryTimeLog(description, query_id, results_count, milliseconds):
         print(ex)
 
 def associateUserWithQuestionnaire(request, user):
-    querstionnairy = Questionnaire.objects.filter(ipAddress=getClientIp(request)).first()
-    if querstionnairy:
-        querstionnairy.user = user
-        querstionnairy.save()
+    questionnaire = Questionnaire.objects.filter(ipAddress=getClientIp(request)).first()
+    if questionnaire:
+        questionnaire.user = user
+        questionnaire.save()
 
 def GetToken(token):
     return RegistrationToken.objects.filter(token=token).first()
