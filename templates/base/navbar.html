@@ -21,11 +21,26 @@
                 {% if user.is_authenticated %}
                     {% if user.is_staff %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'main:CreateRegistrationToken' %}">Crear Token</a>
+                            <a class="nav-link" href="{% url 'main:CreateRegistrationToken' %}"> <i class="fa-light fa-square-dashed-circle-plus"></i> Crear Token</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:TokensView' %}"><i class="fa-light fa-square-list"></i> Tokens</a>
                         </li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a href="{% url 'main:Logout' %}" class="nav-link">Cerrar Sesión</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-light fa-circle-user"></i>
+                            {% if user.first_name %}
+                                {{ user.first_name }}
+                            {% else %}
+                                {{ user.username }}
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'main:Logout' %}"><i class="fa-light fa-right-from-bracket"></i> Cerrar Sesión</a></li>
+
+                        </ul>
                     </li>
                 {% else %}
                     <li class="nav-item">

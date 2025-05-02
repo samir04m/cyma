@@ -52,6 +52,7 @@ def QuestionnaireView(request):
         data = request.POST
         fields = {
             'name': data.get('name'),
+            'ipAddress': getClientIp(request),
         }
         try:
             with transaction.atomic():
@@ -173,6 +174,7 @@ def RegisterView(request, token):
                 registrationToken.user_registration_date = timezone.now()
                 registrationToken.user = user
                 registrationToken.save()
+                associateUserWithQuestionnaire(request, user)
 
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
@@ -259,9 +261,23 @@ def CreateQueryTimeLog(description, query_id, results_count, milliseconds):
     except Exception as ex:
         print(ex)
 
+def associateUserWithQuestionnaire(request, user):
+    querstionnairy = Questionnaire.objects.filter(ipAddress=getClientIp(request)).first()
+    if querstionnairy:
+        querstionnairy.user = user
+        querstionnairy.save()
+
 def GetToken(token):
     return RegistrationToken.objects.filter(token=token).first()
 
 def generate_token(length=6):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choices(characters, k=length))
+
+def getClientIp(request):
+    ip = request.META.get('HTTP_X_FORWARDED_FOR')
+    if ip:
+        ip = ip.split(',')[0].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

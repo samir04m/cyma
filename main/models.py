@@ -3,6 +3,7 @@ from django.db import models
 
 class Questionnaire(models.Model):
     name = models.CharField(max_length=200)
+    ipAddress = models.CharField(max_length=100, db_index=True)
     value1 = models.IntegerField()
     value2 = models.IntegerField()
     value3 = models.IntegerField()
@@ -29,6 +30,7 @@ class Questionnaire(models.Model):
     stressScore = models.IntegerField(default=0)
     globalScore = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.depressionScore = self.getDepressionScore()
