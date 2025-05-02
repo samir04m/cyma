@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 class Questionnaire(models.Model):
@@ -48,4 +49,9 @@ class Questionnaire(models.Model):
     def getGlobalScore(self):
         return self.getDepressionScore() + self.getAnxietyScore() + self.getStressScore()
 
-
+class RegistrationToken(models.Model):
+    token = models.CharField(max_length=6, unique=True, db_index=True)
+    active = models.BooleanField(default=True, db_index=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
+    user_registration_date = models.DateTimeField()
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
