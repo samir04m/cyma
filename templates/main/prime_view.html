@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load myTags %}
+
+{% block content %}
+    <div class="container animate__animated animate__fadeIn">
+        {% if request.GET.view == "1" %}
+            {% include 'main/modules/introduction.html' %}
+        {% elif request.GET.view == "2" %}
+            {% include 'main/modules/relaxationTechniques.html' %}
+        {% elif request.GET.view == "3" %}
+            {% include 'main/modules/sleepHabits.html' %}
+        {% elif request.GET.view == "4" %}
+            {% include 'main/modules/meditationTechniques.html' %}
+        {% elif request.GET.view == "5" %}
+            {% include 'main/modules/physicalActivity.html' %}
+        {% else %}
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <h4  class="my-4">
+                        <i class="fa-light fa-ghost fa-2x"></i>
+                        <br><br>
+                        Upps! No hemos encontrado el tema que buscas. Por favor, selecciona uno de los temas disponibles en la página principal.
+                    </h4>
+                    <a href="{% url 'main:Index' %}" class="btn btn-outline-secondary">Volver al inicio</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -9,6 +9,7 @@ urlpatterns = [
     path('result/<int:questionnaire_id>/', views.ResultView, name='Result'),
     path('myResult/', views.MyResultView, name='MyResultView'),
     path('subscription/', views.SubscriptionView, name='Subscription'),
+    path('prime/', views.PrimeView, name='PrimeView'),
 
     path('createToken/', views.CreateRegistrationToken, name='CreateRegistrationToken'),
     path('tokens/', views.TokensView, name='TokensView'),

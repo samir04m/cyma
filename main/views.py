@@ -199,6 +199,9 @@ def MyResultView(request):
         url = reverse('main:Questionnaire')
         return redirect(f'{url}?name={request.user.first_name}')
 
+def PrimeView(request):
+    return render(request, 'main/prime_view.html', {})
+
 def AvgResults(request, query_id, results_count):
     average = QueryTimeLog.objects.filter(query_id=query_id, results_count=results_count).aggregate(
         avg_ms=Avg('milliseconds')
