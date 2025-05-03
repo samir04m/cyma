@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load myTags %}
+
+{% block content %}
+<div class="container pt-2">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 animate__animated animate__fadeIn">
+            <h4 class="text-center color">
+                Cuestionarios realizados
+            </h4>
+            {% if questionnaires %}
+            <div class="text-center">
+                <p class="text-justify">Hemos encontrado que en este dispositivo se han realizado uno o mas cuestionarios,
+                    por favor selecciona el que corresponde a tu persona. 
+                    <br>
+                    Sí ninguno te pertenece, haz clic en el botón <b>Realizar Cuestionario</b>, en caso de que quieras hacerlo, de lo contrario puedes volver al
+                    inicio. 
+                </p>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <p>No se ha encontrado ningún cuestionario realizado en este dispositivo.</p>
+            </div>
+            {% endif %}
+
+            {% for q in questionnaires %}
+                <div class="card shadow mb-3">
+                    <div class="card-body">
+                        <h6 class="card-title color">Nombre: {{q.name}}</h6>
+                        <p class="card-text mb-2">Fecha: {{q.date|date:"d/m/Y h:i a"}}</p>
+                        <div class="text-center">
+                            <a href="{% url 'main:MyResultView' %}?questionnaire_id={{q.id}}" class="btn btn-outline-success">Seleccionar</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="text-center my-4">
+                <a href="{% url 'main:HomeView' %}"
+                    class="btn btn-outline-secondary">Realizar cuestionario</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

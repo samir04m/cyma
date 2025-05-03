@@ -46,8 +46,13 @@
                             {% endif %}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'main:Logout' %}"><i class="fa-light fa-right-from-bracket"></i> Cerrar Sesión</a></li>
-
+                            <li>
+                                <a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank"><i class="fa-light fa-screwdriver-wrench"></i> Admin</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'main:Logout' %}"><i class="fa-light fa-right-from-bracket"></i> Cerrar Sesión</a>
+                            </li>
                         </ul>
                     </li>
                 {% else %}

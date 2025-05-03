@@ -11,7 +11,7 @@
                     <div class="px-4">
                         <p class="my-4 fs-4">Antes de iniciar el cuestionario por favor indícanos cuál es tu nombre</p>
     
-                        <input type="text" class="form-control fs-4" name="name" placeholder="Ingresa tu nombre" autocomplete="off" required>
+                        <input type="text" class="form-control fs-4" name="name" value="{{ request.GET.name }}" placeholder="Ingresa tu nombre" autocomplete="off" required>
     
                         <button type="submit" class="btn btn-outline-success btn-lg m-4 w-150" id="btnSpinner">Continuar</a>
                     </div>

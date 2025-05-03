@@ -32,6 +32,9 @@ class Questionnaire(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-date']
+
     def save(self, *args, **kwargs):
         self.depressionScore = self.getDepressionScore()
         self.anxietyScore = self.getAnxietyScore()

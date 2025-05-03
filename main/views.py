@@ -31,6 +31,9 @@ def Index(request):
         return redirect('main:HomeView')
 
 def HomeView(request):
+    if request.user.is_authenticated and not request.GET.get('name'):
+        name = request.user.first_name if request.user.first_name else request.user.username
+        return redirect(f"{reverse('main:Questionnaire')}?name={name}")
     return render(request, 'main/home.html', {})
 
 def Logout(request):
@@ -175,7 +178,6 @@ def RegisterView(request, token):
                 registrationToken.user_registration_date = timezone.now()
                 registrationToken.user = user
                 registrationToken.save()
-                associateUserWithQuestionnaire(request, user)
 
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
@@ -191,13 +193,20 @@ def RegisterView(request, token):
 
 @login_required
 def MyResultView(request):
+    questionnaire_id = request.GET.get('questionnaire_id')
+    if questionnaire_id:
+        associateUserWithQuestionnaire(request, questionnaire_id, request.user)
+
     questionnaire = Questionnaire.objects.filter(user=request.user).first()
     if questionnaire:
         return redirect('main:Result', questionnaire_id=questionnaire.id)
-    else:
-        messages.info(request, "No se ha encontrado ningún resultado relacionado a tu usuario, sin embargo, puedes realizar el cuestionario a continuación.")
-        url = reverse('main:Questionnaire')
-        return redirect(f'{url}?name={request.user.first_name}')
+
+    context = {}
+    questionnaires = Questionnaire.objects.filter(ipAddress=getClientIp(request))
+    if questionnaires:
+        context['questionnaires'] = questionnaires
+        
+    return render(request, 'main/questionnaires.html', context)
 
 def PrimeView(request):
     return render(request, 'main/prime_view.html', {})
@@ -275,8 +284,8 @@ def CreateQueryTimeLog(description, query_id, results_count, milliseconds):
     except Exception as ex:
         print(ex)
 
-def associateUserWithQuestionnaire(request, user):
-    questionnaire = Questionnaire.objects.filter(ipAddress=getClientIp(request)).first()
+def associateUserWithQuestionnaire(request, questionnaire_id, user):
+    questionnaire = Questionnaire.objects.filter(id=questionnaire_id).first()
     if questionnaire:
         questionnaire.user = user
         questionnaire.save()
