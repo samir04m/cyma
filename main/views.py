@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.db import transaction
 from django.db.models import Avg
 from django.conf import settings
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from functools import wraps
 import random
 import string
@@ -39,12 +39,27 @@ def HomeView(request):
         return redirect(f"{reverse('main:Questionnaire')}?name={name}")
     return render(request, 'main/home.html', {})
 
+def PrimeView(request):
+    return render(request, 'main/prime_view.html', {})
+
 def Logout(request):
     logout(request)
     return redirect('main:Login')
 
 class CustomLoginView(LoginView):
     template_name = 'auth/login.html'
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'auth/changePassword.html'
+    success_url = reverse_lazy('main:Index')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Contraseña cambiada correctamente.')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # messages.error(self.request, 'Ocurrió un error al cambiar la contraseña.')
+        return super().form_invalid(form)
 
 def QuestionnaireView(request):
     name = request.GET.get('name', '')
@@ -210,9 +225,6 @@ def MyResultView(request):
         context['questionnaires'] = questionnaires
         
     return render(request, 'main/questionnaires.html', context)
-
-def PrimeView(request):
-    return render(request, 'main/prime_view.html', {})
 
 def AvgResults(request, query_id, results_count):
     average = QueryTimeLog.objects.filter(query_id=query_id, results_count=results_count).aggregate(

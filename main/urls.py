@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 from . import views
-from .views import CustomLoginView
+from .views import CustomLoginView, CustomPasswordChangeView
 
 urlpatterns = [
     path('', views.Index, name='Index'),
@@ -18,6 +19,7 @@ urlpatterns = [
     path('register/<str:token>/', views.RegisterView, name='RegisterView'),
     path('login/', CustomLoginView.as_view(), name='Login'),
     path('logout/', views.Logout, name='Logout'),
+    path('changePassword/', login_required(CustomPasswordChangeView.as_view()), name='ChangePassword'),
 
     path('init/', views.Init, name='Init'),
     path('createTestTokens/', views.CreateTestTokens, name='CreateTestTokens'),

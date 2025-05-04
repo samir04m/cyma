@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="offset-md-3 col-md-6 offset-lg-4 col-lg-4 animate__animated animate__fadeIn">
-                <div class="card shadow">
+                <div class="card bg-dark shadow">
                     <div class="card-body">
                         {% if token.active %}
                             <h4 class="card-title text-center">Crear cuenta</h4>
@@ -16,7 +16,7 @@
                                     <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Ingresa tu nombre" autocomplete="off" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Número de Teléfono</label>
+                                    <label for="username" class="form-label">Número de Teléfono (Usado para iniciar sesión)</label>
                                     <input type="number" name="username" class="form-control" id="username" placeholder="Ingresa tu celular" autocomplete="off" required>
                                     <div id="usernameError" class="text-danger mt-1"></div>
                                 </div>
