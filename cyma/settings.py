@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$qqnkk2u#^h_)19+#0xmws40e78rrii+69$baf)i*)mzq3s$fn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = ENV_LOCAL
 
 ALLOWED_HOSTS = ['*']
 
@@ -155,4 +155,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
-MEASURE_QUERY_TIME = False
+MEASURE_QUERY_TIME = True
