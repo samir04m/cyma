@@ -4,16 +4,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
+                {% if form.errors %}
+                    <div class="alert alert-dismissible alert-secondary" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        Tus datos de acceso son incorrectos.
+                    </div>
+                {% endif %}
                 <div class="card shadow bg-dark rounded-4">
                     <div class="card-body p-4">
-                        <h4 class="card-title text-center">Inicio de sesión</h4>
-
-                        {% if form.errors %}
-                            <div class="alert alert-warning mt-3" role="alert">
-                                Credenciales incorrectas. Por favor, verifica tu número de teléfono y contraseña.
-                            </div>
-                        {% endif %}
-
+                        <h4 class="card-title text-center mb-4">Inicio de sesión</h4>
                         <form method="post">
                             {% csrf_token %}
                             <div class="mb-3">

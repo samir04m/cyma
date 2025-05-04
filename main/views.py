@@ -39,6 +39,7 @@ def HomeView(request):
         return redirect(f"{reverse('main:Questionnaire')}?name={name}")
     return render(request, 'main/home.html', {})
 
+@login_required
 def PrimeView(request):
     return render(request, 'main/prime_view.html', {})
 
@@ -184,6 +185,10 @@ def RegisterView(request, token):
         username = request.POST.get('username')
         first_name = request.POST.get('first_name')
         password = request.POST.get('password')
+
+        if User.objects.filter(username=username).first():
+            messages.warning(request, "Este teléfono ya tiene una cuenta.")
+            return redirect('main:RegisterView', token=token)
 
         try:
             with transaction.atomic():

@@ -1,3 +1,74 @@
 <h4 class="text-center color mb-4">
     Introducción
 </h4>
+
+<div class="row mb-5">
+    <div class="col-md-6">
+        <section class="py-3">
+            <div class="container">
+                <h2 class="text-center mb-5 fw-semibold">
+                    ¿Qué encontrarás dentro en CYMA Prime?
+                </h2>
+                <div class="row gy-4">
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <span class="fs-2 me-3">🧘</span>
+                            <div>
+                                <h5 class="fw-bold">Técnicas de Relajación</h5>
+                                <p class="text-muted">Ejercicios para liberar tensiones, calmar la mente y reconectar
+                                    con tu cuerpo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <span class="fs-2 me-3">🕯️</span>
+                            <div>
+                                <h5 class="fw-bold">Meditación Consciente</h5>
+                                <p class="text-muted">Técnicas para cultivar la atención plena y reducir el
+                                    estrés diario.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <span class="fs-2 me-3">🌙</span>
+                            <div>
+                                <h5 class="fw-bold">Mejora del Sueño</h5>
+                                <p class="text-muted">Rutinas relajantes que te ayudarán a dormir mejor y
+                                    despertar con energía.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <span class="fs-2 me-3">🏃</span>
+                            <div>
+                                <h5 class="fw-bold">Actividad Física para el Bienestar</h5>
+                                <p class="text-muted">Movimientos suaves y conscientes que te conectan con tu cuerpo y
+                                    tu salud emocional.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-5 col-lg-4 offset-lg-2 ">
+        <div class="ratio ratio-9x16">
+            <iframe src="https://www.youtube.com/embed/fDR3TKea2No" title="Video YouTube" allowfullscreen></iframe>
+        </div>
+
+        <section class="bg-dark text-center">
+            <div class="container py-3">
+                <h3 class="fw-bold mb-4">¿Con que te gustaria comenzar?</h3>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'main:PrimeView' %}?view=2" class="btn btn-outline-success px-4">Relajación</a>
+                    <a href="{% url 'main:PrimeView' %}?view=3" class="btn btn-outline-success px-4">Sueño</a>
+                    <a href="{% url 'main:PrimeView' %}?view=4" class="btn btn-outline-success px-4">Meditación</a>
+                    <a href="{% url 'main:PrimeView' %}?view=5" class="btn btn-outline-success px-4">Actividad Física</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
