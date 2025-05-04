@@ -9,8 +9,13 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-import os
+from dotenv import load_dotenv
 from pathlib import Path
+import os
+import pathlib
+
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=BASE_DIR / ".env")
 
 ENV_LOCAL = os.environ.get('ENV_APP', 'local') == 'local'
 
