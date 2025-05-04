@@ -14,6 +14,9 @@ from functools import wraps
 import random
 import string
 import time
+import os
+
+from .data.users import users
 from .models import *
 
 def staff_required(view_func):
@@ -224,31 +227,19 @@ def AvgResults(request, query_id, results_count):
     return HttpResponse(message)
 
 def Init(request):
-    creation = False
+    newUsers = False
+    for userData in users:
+        user = User.objects.filter(username=userData['username']).first()
+        if not user:
+            User.objects.create_user(
+                username = userData['username'],
+                password = userData['password'],
+                is_staff = userData['is_staff'],
+                is_superuser = userData['is_superuser']
+            )
+            newUsers = True
 
-    user = User.objects.filter(username='admin').first()
-    if not user:
-        user = User.objects.create_user(
-            username='admin',
-            password='pasy7532',
-        )
-        user.is_staff = True
-        user.is_superuser = True
-        user.save()
-        creation = True
-
-    yesid = User.objects.filter(username='yesid').first()
-    if not yesid:
-        yesid = User.objects.create_user(
-            username='yesid',
-            password='pasy7532',
-        )
-        yesid.is_staff = True
-        yesid.is_superuser = True
-        yesid.save()
-        creation = True
-
-    if creation:
+    if newUsers:
         messages.success(request, "Usuarios creados exitosamente.")
     else:
         messages.info(request, "Los usuarios ya existen.")
