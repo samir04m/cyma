@@ -4,5 +4,9 @@ __pycache__/
 *$py.class
 
 .vscode
-media/
 .env
+
+media/
+
+db.local
+db.production
